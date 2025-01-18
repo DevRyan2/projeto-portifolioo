@@ -1,0 +1,90 @@
+@charset "utf-8";
+
+@font-face {
+  font-family: "fonte-principal";
+  src: url("../fonts/KGBlankSpaceSolid.ttf") format("opentype");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(19, 18, 18);
+  color: white;
+  font-family: "fonte-principal", Arial, sans-serif;
+  text-align: center;
+  padding: 10px;
+}
+
+.txt-animado {
+  font-size: 8vw;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+.txt-animado span {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.txt-animado span::before {
+  content: "";
+  color: rgb(255, 0, 43);
+  animation: palavras 10s infinite;
+}
+
+.txt-animado span::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  border-left: 2px solid rgb(255, 0, 43);
+  right: -10px;
+  animation: cursor 0.8s infinite, digita 10s steps(10) infinite;
+  width: calc(100% + 18px);
+  background-color: rgb(19, 18, 18);
+}
+
+@keyframes digita {
+  0%, 15%, 50%, 65%, 100% {
+    width: 0;
+  }
+  5%, 55% {
+    width: calc(100% + 18px);
+  }
+}
+
+@keyframes cursor {
+  0% {
+    border-left: 2px solid rgb(19, 18, 18);
+  }
+}
+
+@keyframes palavras {
+  0%, 50% {
+    content: "Meu nome é Ryan";
+  }
+  51%, 100% {
+    content: "Sou um Desenvolvedor FullStack";
+  }
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+  .txt-animado {
+    font-size: 6vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .txt-animado {
+    font-size: 5vw;
+  }
+}
